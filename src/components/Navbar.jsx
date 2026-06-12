@@ -62,10 +62,10 @@ export default function Navbar({ onSearch }) {
               />
             </div>
 
-            <Link to="/" className="font-semibold text-gray-600 hover:text-blue-600 transition-colors">Ana Sayfa</Link>
-            <Link to="/playlists" className="font-semibold text-gray-600 hover:text-blue-600 transition-colors">Eğitimler</Link>
-            <Link to="/denemeler" className="font-semibold text-gray-600 hover:text-blue-600 transition-colors">Deneme Takibi</Link>
-            <Link to="/bilgi-kartlari" className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-500 hover:scale-105 transition-transform">Hap Bilgiler ⚡</Link>
+            <Link to="/" className="font-semibold text-gray-600 hover:text-blue-600 transition-colors whitespace-nowrap">Ana Sayfa</Link>
+            <Link to="/playlists" className="font-semibold text-gray-600 hover:text-blue-600 transition-colors whitespace-nowrap">Eğitimler</Link>
+            <Link to="/denemeler" className="font-semibold text-gray-600 hover:text-blue-600 transition-colors whitespace-nowrap">Deneme Takibi</Link>
+            <Link to="/bilgi-kartlari" className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-500 hover:scale-105 transition-transform whitespace-nowrap">Hap Bilgiler ⚡</Link>
 
             {/* 🔥 Streak / Seri Rozeti */}
             <div className="flex items-center gap-1.5 bg-gradient-to-r from-orange-100 to-red-100 px-3 py-1.5 rounded-full border border-orange-200 shadow-sm" title={`${streak} gündür aralıksız çalışıyorsun!`}>
@@ -122,8 +122,15 @@ export default function Navbar({ onSearch }) {
               <Link to="/playlists" onClick={() => setIsMenuOpen(false)} className="p-3 bg-gray-50 rounded-xl font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">Eğitimler (Oynatma Listeleri)</Link>
               <Link to="/denemeler" onClick={() => setIsMenuOpen(false)} className="p-3 bg-gray-50 rounded-xl font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">Deneme Net Takibi</Link>
               <Link to="/bilgi-kartlari" onClick={() => setIsMenuOpen(false)} className="p-3 bg-amber-50 rounded-xl font-extrabold text-amber-600 hover:bg-amber-100 transition-colors flex items-center justify-between">
-                <span>Hap Bilgiler</span>
-                <span className="text-xl">⚡</span>
+                <div className="flex items-center gap-2">
+                  <span>Hap Bilgiler</span>
+                  <span className="text-xl">⚡</span>
+                </div>
+                {/* Mobil 🔥 Streak Rozeti */}
+                <div className="flex items-center gap-1 bg-white px-2 py-1 rounded-full border border-orange-200 shadow-sm" title={`${streak} gündür aralıksız çalışıyorsun!`}>
+                  <FaFire className="text-orange-500 animate-pulse" />
+                  <span className="font-black text-orange-600 text-sm">{streak}</span>
+                </div>
               </Link>
             </div>
 

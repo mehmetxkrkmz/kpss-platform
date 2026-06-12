@@ -137,10 +137,10 @@ export default function Home() {
         </div>
 
         {/* Günlük Seri & Motivasyon Alanı */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-16 items-stretch">
           {/* Motivasyon Sözü */}
-          <div className="bg-gradient-to-br from-indigo-600 to-blue-700 rounded-3xl p-8 md:p-10 text-white shadow-lg relative overflow-hidden flex flex-col justify-center">
-            <div className="absolute top-0 right-0 -mt-10 -mr-10 text-white/10 text-9xl">
+          <div className="bg-gradient-to-br from-indigo-600 to-blue-700 rounded-3xl p-8 md:p-10 text-white shadow-lg relative overflow-hidden flex flex-col justify-center h-full">
+            <div className="absolute top-0 right-0 -mt-10 -mr-10 text-white/10 text-9xl pointer-events-none">
               <FaQuoteLeft />
             </div>
             <h3 className="text-xl font-bold text-indigo-200 mb-4 tracking-wider uppercase">Günün Motivasyonu</h3>
@@ -148,9 +148,9 @@ export default function Home() {
           </div>
 
           {/* Günün Hap Bilgisi */}
-          <div className="bg-white rounded-3xl p-8 md:p-10 border border-gray-100 shadow-sm relative group cursor-pointer hover:shadow-lg transition-all" onClick={() => navigate('/bilgi-kartlari')}>
+          <div className="bg-white rounded-3xl p-8 md:p-10 border border-gray-100 shadow-sm relative group cursor-pointer hover:shadow-lg transition-all flex flex-col h-full overflow-hidden" onClick={() => navigate('/bilgi-kartlari')}>
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-amber-100 text-amber-500 rounded-xl flex items-center justify-center text-2xl">
+              <div className="w-12 h-12 bg-amber-100 text-amber-500 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">
                 <FaLightbulb />
               </div>
               <div>
@@ -158,13 +158,17 @@ export default function Home() {
                 <span className="text-sm font-bold text-amber-500 uppercase tracking-widest">{dailyCard.subject}</span>
               </div>
             </div>
-            <p className="text-lg font-medium text-gray-700 mb-4">{dailyCard.question}</p>
-            <div className="bg-gray-50 border border-gray-100 p-4 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <span className="text-sm text-gray-400 font-bold mb-1 block">Cevap:</span>
-              <p className="text-indigo-600 font-bold">{dailyCard.answer}</p>
-            </div>
-            <div className="absolute bottom-6 right-8 text-sm text-gray-400 group-hover:opacity-0 transition-opacity font-medium">
-              Cevabı görmek için üzerine gel
+            
+            <p className="text-lg font-medium text-gray-700 mb-6 flex-grow">{dailyCard.question}</p>
+            
+            <div className="relative overflow-hidden mt-auto">
+              <div className="bg-gray-50 border border-gray-100 p-4 rounded-xl opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                <span className="text-sm text-gray-400 font-bold mb-1 block">Cevap:</span>
+                <p className="text-indigo-600 font-bold">{dailyCard.answer}</p>
+              </div>
+              <div className="absolute inset-0 flex items-end text-sm text-gray-400 group-hover:opacity-0 transition-opacity duration-300 font-medium pb-2">
+                Cevabı görmek için üzerine gel...
+              </div>
             </div>
           </div>
         </div>
