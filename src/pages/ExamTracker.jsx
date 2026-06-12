@@ -3,6 +3,7 @@ import { collection, addDoc, query, where, getDocs, orderBy, serverTimestamp } f
 import { db } from '../firebase';
 import { useAuth } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
+import Heatmap from '../components/Heatmap';
 import { FaChartLine, FaPlus, FaTrash, FaTrophy } from 'react-icons/fa';
 
 export default function ExamTracker() {
@@ -96,27 +97,74 @@ export default function ExamTracker() {
 
   const bestExam = exams.length > 0 ? exams.reduce((prev, current) => (prev.totalNet > current.totalNet) ? prev : current) : null;
 
+  // Yapay Zeka Koçluk Algoritması
+  const generateAIAdvice = () => {
+    if (exams.length === 0) return "Analiz yapabilmem için ilk denemeni sisteme girmelisin. İlk adımı at, gerisi gelecek!";
+    if (exams.length === 1) return `İlk denemeni girdin, tebrikler! Toplam ${exams[0].totalNet} net ile başladın. Gelişimini görmek için en az bir deneme daha çözmelisin.`;
+    
+    const lastExam = exams[0]; // (Sıralama yeniden eskiye doğru varsayıyoruz)
+    const previousExam = exams[1];
+    
+    let advice = "";
+    
+    // Genel Trend
+    if (lastExam.totalNet > previousExam.totalNet) {
+      advice += "📈 Harika gidiyorsun, toplam netin bir önceki denemeye göre artmış! ";
+    } else if (lastExam.totalNet < previousExam.totalNet) {
+      advice += "📉 Toplam netinde ufak bir düşüş var, moral bozmak yok, eksiklerini kapatma fırsatı! ";
+    } else {
+      advice += "⚖️ Netin sabit kalmış, bir sonraki denemede sıçrama yapma zamanı. ";
+    }
+
+    // Ders Bazlı Spesifik Analiz
+    const weakSubjects = [];
+    if (lastExam.math < 10) weakSubjects.push("Matematik");
+    if (lastExam.turkish < 15) weakSubjects.push("Türkçe");
+    if (lastExam.history < 12) weakSubjects.push("Tarih");
+    
+    if (weakSubjects.length > 0) {
+      advice += `Özellikle ${weakSubjects.join(" ve ")} derslerinde daha fazla pratiğe ihtiyacın var gibi görünüyor. Konu tekrarlarını sıklaştırabilirsin.`;
+    } else {
+      advice += "Ders bazlı netlerin oldukça dengeli, bu stabiliteyi koruyarak üstüne koymaya devam et!";
+    }
+    
+    return advice;
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
       <Navbar />
       <div className="container mx-auto p-4 md:p-8 flex-grow">
-        <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
-        <div>
-          <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center gap-3">
-            <FaChartLine className="text-blue-600" />
-            Deneme Net Takibi
-          </h1>
-          <p className="text-gray-500 mt-2 font-medium">Girdiğiniz deneme sınavlarını kaydedin, gelişiminizi analiz edin.</p>
+        <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+          <div>
+            <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center gap-3">
+              <FaChartLine className="text-blue-600" />
+              Deneme Net Takibi
+            </h1>
+            <p className="text-gray-500 mt-2 font-medium">Girdiğiniz deneme sınavlarını kaydedin, gelişiminizi analiz edin.</p>
+          </div>
+          <button 
+            onClick={() => setShowModal(true)}
+            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-full font-bold shadow-lg hover:shadow-xl transition-all"
+          >
+            <FaPlus /> Yeni Deneme Ekle
+          </button>
         </div>
-        <button 
-          onClick={() => setShowModal(true)}
-          className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-full font-bold shadow-lg hover:shadow-xl transition-all"
-        >
-          <FaPlus /> Yeni Deneme Ekle
-        </button>
-      </div>
 
-      {/* İstatistik Özetleri */}
+        {/* AI Deneme Koçu (YENİ) */}
+        {exams.length > 0 && (
+          <div className="mb-10 bg-gradient-to-r from-indigo-50 to-blue-50 p-6 rounded-3xl border border-indigo-100 shadow-sm flex items-start gap-4">
+            <div className="w-12 h-12 bg-indigo-600 text-white rounded-2xl flex items-center justify-center text-2xl flex-shrink-0 shadow-md">
+              🤖
+            </div>
+            <div>
+              <h3 className="text-lg font-black text-indigo-900 mb-1">EduTakip Yapay Zeka Koçu</h3>
+              <p className="text-indigo-800 font-medium leading-relaxed">{generateAIAdvice()}</p>
+            </div>
+          </div>
+        )}
+
+        {/* İstatistik Özetleri */}
       {exams.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
           <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex items-center gap-4">
@@ -145,6 +193,9 @@ export default function ExamTracker() {
           </div>
         </div>
       )}
+
+      {/* Soru Çözüm Haritası */}
+      <Heatmap />
 
       {/* Deneme Listesi */}
       <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">

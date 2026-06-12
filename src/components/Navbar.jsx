@@ -64,6 +64,7 @@ export default function Navbar({ onSearch }) {
 
             <Link to="/" className="font-semibold text-gray-600 hover:text-blue-600 transition-colors whitespace-nowrap">Ana Sayfa</Link>
             <Link to="/playlists" className="font-semibold text-gray-600 hover:text-blue-600 transition-colors whitespace-nowrap">Eğitimler</Link>
+            <Link to="/konular" className="font-semibold text-gray-600 hover:text-emerald-600 transition-colors whitespace-nowrap">Konu Takibi</Link>
             <Link to="/denemeler" className="font-semibold text-gray-600 hover:text-blue-600 transition-colors whitespace-nowrap">Deneme Takibi</Link>
             <Link to="/bilgi-kartlari" className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-500 hover:scale-105 transition-transform whitespace-nowrap">Hap Bilgiler ⚡</Link>
 
@@ -120,6 +121,7 @@ export default function Navbar({ onSearch }) {
             <div className="flex flex-col gap-2">
               <Link to="/" onClick={() => setIsMenuOpen(false)} className="p-3 bg-gray-50 rounded-xl font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">Ana Sayfa</Link>
               <Link to="/playlists" onClick={() => setIsMenuOpen(false)} className="p-3 bg-gray-50 rounded-xl font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">Eğitimler (Oynatma Listeleri)</Link>
+              <Link to="/konular" onClick={() => setIsMenuOpen(false)} className="p-3 bg-gray-50 rounded-xl font-bold text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 transition-colors">Konu Takibi</Link>
               <Link to="/denemeler" onClick={() => setIsMenuOpen(false)} className="p-3 bg-gray-50 rounded-xl font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">Deneme Net Takibi</Link>
               <Link to="/bilgi-kartlari" onClick={() => setIsMenuOpen(false)} className="p-3 bg-amber-50 rounded-xl font-extrabold text-amber-600 hover:bg-amber-100 transition-colors flex items-center justify-between">
                 <div className="flex items-center gap-2">

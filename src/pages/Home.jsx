@@ -16,6 +16,29 @@ export default function Home() {
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
 
+  // Sınava Kalan Süre Mantığı (Örn: KPSS 2026 için tahmini tarih)
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  
+  useEffect(() => {
+    const targetDate = new Date("2026-09-06T10:15:00").getTime();
+    
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+      
+      if (distance > 0) {
+        setTimeLeft({
+          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((distance % (1000 * 60)) / 1000)
+        });
+      }
+    }, 1000);
+    
+    return () => clearInterval(interval);
+  }, []);
+
   // Günün Hap Bilgisi & Motivasyon Sözü Mantığı
   const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
   const dailyCard = flashcards[dayOfYear % flashcards.length];
@@ -78,9 +101,44 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col min-h-screen bg-gray-50">
       <Navbar onSearch={setSearchTerm} />
-      <main className="container mx-auto p-4 md:p-8">
+
+      {/* Geri Sayım Banner */}
+      <div className="bg-gradient-to-r from-slate-900 to-indigo-900 text-white py-4 shadow-md relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+        <div className="container mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center animate-pulse shadow-[0_0_15px_rgba(239,68,68,0.5)]">
+              <FaClock className="text-xl" />
+            </div>
+            <div>
+              <h2 className="text-lg font-bold tracking-wide">2026 KPSS Ortaöğretim</h2>
+              <p className="text-xs text-indigo-200">Zaman daralıyor, hedefine odaklan!</p>
+            </div>
+          </div>
+          <div className="flex gap-3 text-center">
+            <div className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-xl border border-white/20 min-w-[70px]">
+              <div className="text-2xl font-black text-white">{timeLeft.days}</div>
+              <div className="text-[10px] uppercase tracking-wider text-indigo-200">Gün</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-xl border border-white/20 min-w-[70px]">
+              <div className="text-2xl font-black text-white">{timeLeft.hours.toString().padStart(2, '0')}</div>
+              <div className="text-[10px] uppercase tracking-wider text-indigo-200">Saat</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-xl border border-white/20 min-w-[70px]">
+              <div className="text-2xl font-black text-white">{timeLeft.minutes.toString().padStart(2, '0')}</div>
+              <div className="text-[10px] uppercase tracking-wider text-indigo-200">Dakika</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-xl border border-white/20 min-w-[70px]">
+              <div className="text-2xl font-black text-red-400">{timeLeft.seconds.toString().padStart(2, '0')}</div>
+              <div className="text-[10px] uppercase tracking-wider text-red-200">Saniye</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <main className="container mx-auto p-4 md:p-8 flex-grow">
         
         {/* KPSS Bilgi Hero Bölümü */}
         <div className="bg-white/80 backdrop-blur-xl border border-white/60 shadow-xl rounded-3xl p-6 md:p-10 mb-10 mt-4 overflow-hidden relative">

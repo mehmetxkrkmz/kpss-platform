@@ -5,6 +5,7 @@ import CourseView from './pages/CourseView';
 import Playlists from './pages/Playlists';
 import Flashcards from './pages/Flashcards';
 import ExamTracker from './pages/ExamTracker';
+import SyllabusTracker from './pages/SyllabusTracker';
 import { AuthProvider } from './context/AuthContext';
 import Footer from './components/Footer';
 import PomodoroWidget from './components/PomodoroWidget';
@@ -21,6 +22,7 @@ export default function App() {
               <Route path="/playlists" element={<Playlists />} />
               <Route path="/bilgi-kartlari" element={<Flashcards />} />
               <Route path="/denemeler" element={<ExamTracker />} />
+              <Route path="/konular" element={<SyllabusTracker />} />
             </Routes>
           </div>
           <Footer />
