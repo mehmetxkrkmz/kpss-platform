@@ -5,7 +5,6 @@ import CourseView from './pages/CourseView';
 import Playlists from './pages/Playlists';
 import Flashcards from './pages/Flashcards';
 import { AuthProvider } from './context/AuthContext';
-import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
 export default function App() {
@@ -13,7 +12,6 @@ export default function App() {
     <AuthProvider>
       <Router basename={import.meta.env.BASE_URL}>
         <div className="flex flex-col min-h-screen bg-gray-50">
-          <Navbar />
           <div className="flex-grow">
             <Routes>
               <Route path="/" element={<Home />} />
