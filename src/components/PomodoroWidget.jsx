@@ -7,16 +7,33 @@ export default function PomodoroWidget() {
   const [timeLeft, setTimeLeft] = useState(25 * 60);
   const [isActive, setIsActive] = useState(false);
 
+  const [completedToday, setCompletedToday] = useState(0);
+
+  useEffect(() => {
+    // Günlük sıfırlama ve yükleme
+    const today = new Date().toDateString();
+    const savedDate = localStorage.getItem('pomodoroDate');
+    if (savedDate !== today) {
+      localStorage.setItem('pomodoroDate', today);
+      localStorage.setItem('pomodorosToday', '0');
+      setCompletedToday(0);
+    } else {
+      setCompletedToday(parseInt(localStorage.getItem('pomodorosToday') || '0'));
+    }
+  }, []);
+
   useEffect(() => {
     let interval = null;
     if (isActive && timeLeft > 0) {
       interval = setInterval(() => {
         setTimeLeft(timeLeft - 1);
       }, 1000);
-    } else if (timeLeft === 0) {
-      // Süre bittiğinde alarm çalabilir (opsiyonel)
+    } else if (timeLeft === 0 && isActive) {
       setIsActive(false);
       if (mode === 'work') {
+        const newTotal = completedToday + 1;
+        setCompletedToday(newTotal);
+        localStorage.setItem('pomodorosToday', newTotal.toString());
         setMode('break');
         setTimeLeft(5 * 60);
       } else {
@@ -25,7 +42,7 @@ export default function PomodoroWidget() {
       }
     }
     return () => clearInterval(interval);
-  }, [isActive, timeLeft, mode]);
+  }, [isActive, timeLeft, mode, completedToday]);
 
   const toggleTimer = () => setIsActive(!isActive);
 
@@ -98,7 +115,7 @@ export default function PomodoroWidget() {
               </button>
             </div>
 
-            <div className="flex bg-gray-100 p-1 rounded-xl">
+            <div className="flex bg-gray-100 p-1 rounded-xl mb-4">
               <button 
                 onClick={() => changeMode('work')}
                 className={`flex-1 py-2 text-sm font-bold rounded-lg transition-colors ${mode === 'work' ? 'bg-white shadow-sm text-red-600' : 'text-gray-500'}`}
@@ -111,6 +128,21 @@ export default function PomodoroWidget() {
               >
                 Mola (5')
               </button>
+            </div>
+
+            {/* Günlük Hedef İlerlemesi */}
+            <div className="mt-2 text-left">
+              <div className="flex justify-between text-xs font-bold text-gray-500 mb-1">
+                <span>Günlük Hedef (4)</span>
+                <span>{completedToday}/4</span>
+              </div>
+              <div className="w-full bg-gray-100 rounded-full h-2">
+                <div 
+                  className="bg-indigo-500 h-2 rounded-full transition-all duration-500" 
+                  style={{ width: `${Math.min((completedToday / 4) * 100, 100)}%` }}
+                ></div>
+              </div>
+              {completedToday >= 4 && <p className="text-xs text-center text-emerald-500 font-bold mt-2">🎉 Harika! Günlük hedefini tamamladın.</p>}
             </div>
           </div>
         </div>

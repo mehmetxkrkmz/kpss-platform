@@ -1,18 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { collection, getDocs } from 'firebase/firestore';
+import { Link, useNavigate } from 'react-router-dom';
+import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { db } from '../firebase';
 import CourseCard from '../components/CourseCard';
 import Navbar from '../components/Navbar';
 import { seedDatabase } from '../services/mockData';
+import { flashcards } from '../services/flashcardsData';
 
-import { FaClock, FaListOl, FaCalendarCheck, FaGraduationCap } from 'react-icons/fa';
+import { FaClock, FaListOl, FaCalendarCheck, FaGraduationCap, FaLightbulb, FaQuoteLeft } from 'react-icons/fa';
 
 export default function Home() {
+  const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+
+  // Günün Hap Bilgisi & Motivasyon Sözü Mantığı
+  const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+  const dailyCard = flashcards[dayOfYear % flashcards.length];
+  
+  const motivations = [
+    "Bugün yapacağın küçük bir fedakarlık, yarın yaşayacağın büyük bir zaferin temelidir.",
+    "Büyük başarıların sırrı, bıkmadan usanmadan çalışmaktır.",
+    "Zorluklar seni durdurmak için değil, güçlendirmek için vardır.",
+    "Zamanın en iyi yatırımı, geleceğine yaptığın eğitimdir.",
+    "Hiçbir çaba karşılıksız kalmaz, bugün ek, yarın biç.",
+    "Yorgunluk geçer, başarının gururu bir ömür sürer.",
+    "Hayallerine ulaşmanın tek yolu uyanıp harekete geçmektir."
+  ];
+  const dailyMotivation = motivations[dayOfYear % motivations.length];
 
   // Firestore'dan dersleri çekme
   useEffect(() => {
@@ -115,6 +132,39 @@ export default function Home() {
                 <h4 className="font-bold text-gray-800">Kimler Girebilir?</h4>
                 <p className="text-sm text-gray-600 mt-1">Lise mezunu olan veya sınavın geçerlilik süresi içinde mezun olabilecek adaylar.</p>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Günlük Seri & Motivasyon Alanı */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-16">
+          {/* Motivasyon Sözü */}
+          <div className="bg-gradient-to-br from-indigo-600 to-blue-700 rounded-3xl p-8 md:p-10 text-white shadow-lg relative overflow-hidden flex flex-col justify-center">
+            <div className="absolute top-0 right-0 -mt-10 -mr-10 text-white/10 text-9xl">
+              <FaQuoteLeft />
+            </div>
+            <h3 className="text-xl font-bold text-indigo-200 mb-4 tracking-wider uppercase">Günün Motivasyonu</h3>
+            <p className="text-2xl md:text-3xl font-bold leading-tight relative z-10">"{dailyMotivation}"</p>
+          </div>
+
+          {/* Günün Hap Bilgisi */}
+          <div className="bg-white rounded-3xl p-8 md:p-10 border border-gray-100 shadow-sm relative group cursor-pointer hover:shadow-lg transition-all" onClick={() => navigate('/bilgi-kartlari')}>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 bg-amber-100 text-amber-500 rounded-xl flex items-center justify-center text-2xl">
+                <FaLightbulb />
+              </div>
+              <div>
+                <h3 className="text-xl font-black text-gray-800">Günün Hap Bilgisi</h3>
+                <span className="text-sm font-bold text-amber-500 uppercase tracking-widest">{dailyCard.subject}</span>
+              </div>
+            </div>
+            <p className="text-lg font-medium text-gray-700 mb-4">{dailyCard.question}</p>
+            <div className="bg-gray-50 border border-gray-100 p-4 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span className="text-sm text-gray-400 font-bold mb-1 block">Cevap:</span>
+              <p className="text-indigo-600 font-bold">{dailyCard.answer}</p>
+            </div>
+            <div className="absolute bottom-6 right-8 text-sm text-gray-400 group-hover:opacity-0 transition-opacity font-medium">
+              Cevabı görmek için üzerine gel
             </div>
           </div>
         </div>

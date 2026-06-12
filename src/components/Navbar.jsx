@@ -1,12 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaSearch, FaBookOpen, FaGoogle, FaSignOutAlt, FaBars, FaTimes } from 'react-icons/fa';
+import { FaSearch, FaBookOpen, FaGoogle, FaSignOutAlt, FaBars, FaTimes, FaFire } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
 
 export default function Navbar({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [streak, setStreak] = useState(0);
   const { currentUser, loginWithGoogle, logout } = useAuth();
+
+  useEffect(() => {
+    const today = new Date().toDateString();
+    const lastVisit = localStorage.getItem('lastVisit');
+    let currentStreak = parseInt(localStorage.getItem('streak') || '0');
+
+    if (lastVisit === today) {
+      // Zaten bugün girmiş, seriyi koru
+    } else {
+      const yesterday = new Date(Date.now() - 86400000).toDateString();
+      if (lastVisit === yesterday) {
+        // Dün de girmiş, seriyi arttır
+        currentStreak += 1;
+      } else {
+        // Seriyi bozmuş veya ilk girişi
+        currentStreak = 1;
+      }
+      localStorage.setItem('lastVisit', today);
+      localStorage.setItem('streak', currentStreak.toString());
+    }
+    setStreak(currentStreak);
+  }, []);
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
@@ -43,6 +66,12 @@ export default function Navbar({ onSearch }) {
             <Link to="/playlists" className="font-semibold text-gray-600 hover:text-blue-600 transition-colors">Eğitimler</Link>
             <Link to="/denemeler" className="font-semibold text-gray-600 hover:text-blue-600 transition-colors">Deneme Takibi</Link>
             <Link to="/bilgi-kartlari" className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-500 hover:scale-105 transition-transform">Hap Bilgiler ⚡</Link>
+
+            {/* 🔥 Streak / Seri Rozeti */}
+            <div className="flex items-center gap-1.5 bg-gradient-to-r from-orange-100 to-red-100 px-3 py-1.5 rounded-full border border-orange-200 shadow-sm" title={`${streak} gündür aralıksız çalışıyorsun!`}>
+              <FaFire className="text-orange-500 text-lg animate-pulse" />
+              <span className="font-black text-orange-600">{streak}</span>
+            </div>
 
             {currentUser ? (
               <div className="flex items-center gap-3 bg-white px-3 py-1.5 rounded-full border border-gray-200 shadow-sm">
