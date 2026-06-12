@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 import CourseCard from '../components/CourseCard';
@@ -73,12 +74,17 @@ export default function Home() {
               <h1 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-indigo-800 tracking-tight">KPSS Ortaöğretim Rehberi</h1>
               <p className="text-gray-500 mt-2 font-medium">Sınav formatı, süre ve soru dağılımları hakkında bilmeniz gereken her şey.</p>
             </div>
-            <button 
-              onClick={handleSeed}
-              className="px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold rounded-full shadow-lg hover:shadow-2xl hover:scale-105 transition-all text-sm whitespace-nowrap"
-            >
-              Müfredatı Güncelle (Firestore'a Yaz)
-            </button>
+            <div className="flex gap-3">
+              <Link to="/bilgi-kartlari" className="px-6 py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-full shadow-lg hover:shadow-2xl hover:scale-105 transition-all text-sm whitespace-nowrap flex items-center gap-2">
+                Hap Bilgiler ⚡
+              </Link>
+              <button 
+                onClick={handleSeed}
+                className="px-6 py-2.5 bg-white text-indigo-600 border border-indigo-100 font-bold rounded-full shadow-sm hover:bg-indigo-50 hover:scale-105 transition-all text-sm whitespace-nowrap"
+              >
+                Müfredatı Güncelle
+              </button>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

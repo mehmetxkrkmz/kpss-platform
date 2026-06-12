@@ -1,0 +1,57 @@
+export const flashcards = [
+  // TARİH KARTLARI
+  { id: 1, subject: "Tarih", question: "İslamiyet öncesi Türklerde devleti yönetme yetkisinin Tanrı tarafından verildiğine inanılan anlayış nedir?", answer: "Kut Anlayışı" },
+  { id: 2, subject: "Tarih", question: "Dünyanın bilinen en uzun destanı olan Manas Destanı hangi Türk devletine aittir?", answer: "Kırgızlar" },
+  { id: 3, subject: "Tarih", question: "Anadolu'nun kapılarının Türklere açılmasını sağlayan savaş hangisidir?", answer: "1071 Malazgirt Savaşı" },
+  { id: 4, subject: "Tarih", question: "Osmanlı Devleti'nde ilk altın parayı bastıran padişah kimdir?", answer: "Fatih Sultan Mehmet" },
+  { id: 5, subject: "Tarih", question: "Osmanlı Devleti'nin Batı'da en geniş sınırlara ulaştığı antlaşma hangisidir?", answer: "Bucaş Antlaşması (1672)" },
+  { id: 6, subject: "Tarih", question: "Osmanlı Devleti'nin kaybettiği toprakları geri alma ümidinin doğduğu antlaşma hangisidir?", answer: "Prut Antlaşması (1711)" },
+  { id: 7, subject: "Tarih", question: "Lale Devri'nin ünlü minyatür sanatçısı kimdir?", answer: "Levni" },
+  { id: 8, subject: "Tarih", question: "Mustafa Kemal'in 'Size taarruzu değil, ölmeyi emrediyorum' dediği savaş cephesi hangisidir?", answer: "Çanakkale Cephesi (Conkbayırı)" },
+  { id: 9, subject: "Tarih", question: "Milli Mücadele'nin gerekçesi, amacı ve yönteminin ilk kez belirtildiği genelge hangisidir?", answer: "Amasya Genelgesi" },
+  { id: 10, subject: "Tarih", question: "Misak-ı Milli nerede kabul edilmiştir?", answer: "Son Osmanlı Mebusan Meclisi'nde" },
+  { id: 11, subject: "Tarih", question: "Türkiye Büyük Millet Meclisi'ni (TBMM) tanıyan ilk İslam devleti hangisidir?", answer: "Afganistan" },
+  { id: 12, subject: "Tarih", question: "Türkiye Büyük Millet Meclisi'ni (TBMM) tanıyan ilk Avrupa (İtilaf) devleti hangisidir?", answer: "Fransa (Ankara Antlaşması)" },
+  { id: 13, subject: "Tarih", question: "Osmanlı Devleti'nin resmen sona ermesine neden olan olay nedir?", answer: "Saltanatın Kaldırılması (1 Kasım 1922)" },
+  { id: 14, subject: "Tarih", question: "Türkiye Cumhuriyeti'nin ilk Diyanet İşleri Başkanı kimdir?", answer: "Rıfat Börekçi" },
+  { id: 15, subject: "Tarih", question: "Cumhuriyet döneminde çok partili hayata geçişin ilk denemesi hangi partinin kurulmasıyla yapılmıştır?", answer: "Terakkiperver Cumhuriyet Fırkası" },
+
+  // COĞRAFYA KARTLARI
+  { id: 16, subject: "Coğrafya", question: "Türkiye'nin en doğusu ile en batısı arasındaki yerel saat farkı kaç dakikadır?", answer: "76 Dakika (19 Meridyen x 4 dk)" },
+  { id: 17, subject: "Coğrafya", question: "Türkiye'nin matematik konumu nedir?", answer: "36°-42° Kuzey Paralelleri ile 26°-45° Doğu Meridyenleri arası" },
+  { id: 18, subject: "Coğrafya", question: "Ege Bölgesi'nde dağların denize dik uzanmasının sonucu olarak oluşan, kıyı girinti ve çıkıntısının fazla olduğu kıyı tipi hangisidir?", answer: "Enine Kıyı Tipi" },
+  { id: 19, subject: "Coğrafya", question: "Akdeniz Bölgesi'nde kireç taşının erimesiyle oluşan çukurluklara (polye, uvala, dolin) genel olarak ne ad verilir?", answer: "Karstik Şekiller" },
+  { id: 20, subject: "Coğrafya", question: "Türkiye'nin en büyük gölü olan Van Gölü nasıl oluşmuştur?", answer: "Volkanik Set Gölü'dür" },
+  { id: 21, subject: "Coğrafya", question: "Türkiye'de rüzgar erozyonunun (rüzgar aşındırması) en fazla görüldüğü bölge hangisidir?", answer: "İç Anadolu Bölgesi" },
+  { id: 22, subject: "Coğrafya", question: "Yaz yağışları ile yeşeren uzun boylu çayırların altında oluşan, Türkiye'nin en verimli yerli (zonal) toprağı hangisidir?", answer: "Çernezyom (Kara Toprak - Erzurum/Kars)" },
+  { id: 23, subject: "Coğrafya", question: "Nüfus yoğunluğunun en az olduğu coğrafi bölüm neresidir?", answer: "Hakkari Bölümü" },
+  { id: 24, subject: "Coğrafya", question: "Türkiye'de linyit çıkarımının ve linyitle çalışan termik santrallerin en yoğun olduğu bölge neresidir?", answer: "Ege Bölgesi (Afşin-Elbistan en büyük rezerve sahip olsa da Ege genel yayılımdır)" },
+  { id: 25, subject: "Coğrafya", question: "Ülkemizde çay tarımı sadece hangi bölgemizde yapılmaktadır?", answer: "Karadeniz Bölgesi (Özellikle Doğu Karadeniz Bölümü)" },
+  { id: 26, subject: "Coğrafya", question: "Demir-çelik sanayisinde enerji kaynağı olarak kullanılan ve sadece Zonguldak çevresinden çıkarılan maden hangisidir?", answer: "Taş Kömürü" },
+  { id: 27, subject: "Coğrafya", question: "Türkiye'nin ihraç ettiği (dışarı sattığı) madenler arasında ilk sırada yer alan ve rezervde dünya birincisi olduğumuz maden hangisidir?", answer: "Mermer ve Bor" },
+  { id: 28, subject: "Coğrafya", question: "GAP (Güneydoğu Anadolu Projesi) tamamlandığında en çok hangi tarım ürününün üretiminin artması hedeflenmiştir?", answer: "Pamuk" },
+
+  // VATANDAŞLIK KARTLARI
+  { id: 29, subject: "Vatandaşlık", question: "Bir ülkede yetkili makamlarca konulmuş olan ve halen yürürlükte bulunan yazılı hukuk kurallarının tümüne ne ad verilir?", answer: "Mevzu Hukuk (Mevzuat)" },
+  { id: 30, subject: "Vatandaşlık", question: "Türkiye Cumhuriyeti'nde kanun yapma yetkisi hangi kuruma aittir?", answer: "Türkiye Büyük Millet Meclisi (TBMM)" },
+  { id: 31, subject: "Vatandaşlık", question: "Yasama dokunulmazlığının kaldırılmasına karşı kaç gün içinde nereye itiraz edilebilir?", answer: "7 gün içinde Anayasa Mahkemesi'ne" },
+  { id: 32, subject: "Vatandaşlık", question: "Cumhurbaşkanı seçilebilmek için kaç yaşını doldurmuş olmak gerekir?", answer: "40 yaşını doldurmuş olmak" },
+  { id: 33, subject: "Vatandaşlık", question: "Türkiye'de Olağanüstü Hal (OHAL) ilan etme yetkisi kime aittir?", answer: "Cumhurbaşkanına" },
+  { id: 34, subject: "Vatandaşlık", question: "Kanunların Anayasa'ya şekil ve esas bakımından uygunluğunu denetleyen yüksek mahkeme hangisidir?", answer: "Anayasa Mahkemesi" },
+  { id: 35, subject: "Vatandaşlık", question: "Adli yargı kolunun en üst temyiz mercii (mahkemesi) hangisidir?", answer: "Yargıtay" },
+  { id: 36, subject: "Vatandaşlık", question: "İdari yargı kolunun en üst temyiz mercii hangisidir?", answer: "Danıştay" },
+  { id: 37, subject: "Vatandaşlık", question: "Temel hak ve hürriyetlerin ihlali durumunda vatandaşların doğrudan başvurduğu insan hakları kurumu hangisidir?", answer: "Kamu Denetçiliği Kurumu (Ombudsman)" },
+  { id: 38, subject: "Vatandaşlık", question: "Milletvekili seçilebilmek için gerekli olan yaş sınırı kaçtır?", answer: "18 yaş" },
+  { id: 39, subject: "Vatandaşlık", question: "Anayasa Mahkemesi üyelerini kim seçer?", answer: "12 üyeyi Cumhurbaşkanı, 3 üyeyi TBMM seçer." },
+  { id: 40, subject: "Vatandaşlık", question: "Memurların haftalık çalışma süresi genel olarak kaç saattir?", answer: "40 Saattir." },
+
+  // GÜNCEL BİLGİLER / GENEL KÜLTÜR
+  { id: 41, subject: "Güncel", question: "Birleşmiş Milletler'in (BM) genel merkezi hangi şehirdedir?", answer: "New York (ABD)" },
+  { id: 42, subject: "Güncel", question: "Türkiye'nin ilk yerli gözlem uydusunun adı nedir?", answer: "RASAT" },
+  { id: 43, subject: "Güncel", question: "'Sinekli Bakkal', 'Vurun Kahpeye' gibi eserlerin yazarı ünlü kadın edebiyatçımız kimdir?", answer: "Halide Edip Adıvar" },
+  { id: 44, subject: "Güncel", question: "UNESCO Dünya Mirası Listesi'nde yer alan Göbeklitepe hangi ilimizdedir?", answer: "Şanlıurfa" },
+  { id: 45, subject: "Güncel", question: "Kuzey Kıbrıs Türk Cumhuriyeti'nin (KKTC) ilk cumhurbaşkanı kimdir?", answer: "Rauf Denktaş" },
+  { id: 46, subject: "Güncel", question: "Dünyanın en uzun nehri neresidir?", answer: "Nil Nehri" },
+  { id: 47, subject: "Güncel", question: "İstiklal Marşı'mızın bestecisi kimdir?", answer: "Osman Zeki Üngör" },
+  { id: 48, subject: "Güncel", question: "İlk yerli ve milli otomobil markamızın kısaltması nedir?", answer: "TOGG" }
+];

@@ -40,7 +40,8 @@ export default function Navbar({ onSearch }) {
             </div>
 
             <Link to="/" className="font-semibold text-gray-600 hover:text-blue-600 transition-colors">Ana Sayfa</Link>
-            <Link to="/playlists" className="font-semibold text-gray-600 hover:text-blue-600 transition-colors">Keşfet</Link>
+            <Link to="/playlists" className="font-semibold text-gray-600 hover:text-blue-600 transition-colors">Eğitimler</Link>
+            <Link to="/bilgi-kartlari" className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-500 hover:scale-105 transition-transform">Hap Bilgiler ⚡</Link>
 
             {currentUser ? (
               <div className="flex items-center gap-3 bg-white px-3 py-1.5 rounded-full border border-gray-200 shadow-sm">
@@ -88,7 +89,11 @@ export default function Navbar({ onSearch }) {
 
             <div className="flex flex-col gap-2">
               <Link to="/" onClick={() => setIsMenuOpen(false)} className="p-3 bg-gray-50 rounded-xl font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">Ana Sayfa</Link>
-              <Link to="/playlists" onClick={() => setIsMenuOpen(false)} className="p-3 bg-gray-50 rounded-xl font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">Keşfet (Oynatma Listeleri)</Link>
+              <Link to="/playlists" onClick={() => setIsMenuOpen(false)} className="p-3 bg-gray-50 rounded-xl font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">Eğitimler (Oynatma Listeleri)</Link>
+              <Link to="/bilgi-kartlari" onClick={() => setIsMenuOpen(false)} className="p-3 bg-amber-50 rounded-xl font-extrabold text-amber-600 hover:bg-amber-100 transition-colors flex items-center justify-between">
+                <span>Hap Bilgiler</span>
+                <span className="text-xl">⚡</span>
+              </Link>
             </div>
 
             {currentUser ? (
