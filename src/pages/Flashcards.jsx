@@ -61,6 +61,8 @@ export default function Flashcards() {
   if (currentCard.subject === "Coğrafya") { colorFrom = "from-emerald-500"; colorTo = "to-green-600"; }
   if (currentCard.subject === "Vatandaşlık") { colorFrom = "from-amber-500"; colorTo = "to-orange-600"; }
   if (currentCard.subject === "Güncel") { colorFrom = "from-purple-500"; colorTo = "to-fuchsia-600"; }
+  if (currentCard.subject === "Türkçe") { colorFrom = "from-cyan-500"; colorTo = "to-blue-600"; }
+  if (currentCard.subject === "Matematik") { colorFrom = "from-slate-700"; colorTo = "to-slate-900"; }
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
